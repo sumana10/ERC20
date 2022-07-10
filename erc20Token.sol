@@ -36,6 +36,7 @@ contract Block is ERC20Interface{
     function balanceOf(address tokenOwner) public view override returns(uint balance){
         return balances[tokenOwner];
     }
+	
     //transfer token to particular address
     function transfer(address to, uint tokens) public override returns(bool success){
 
@@ -46,6 +47,7 @@ contract Block is ERC20Interface{
         emit Transfer(msg.sender, to, tokens);
         return true;
     }
+	
     //approve amount of token to use by the spender from owner
     function approve(address spender, uint tokens) public override returns(bool success){
         require(balances[msg.sender]>=tokens);
@@ -54,10 +56,12 @@ contract Block is ERC20Interface{
         emit Approval(msg.sender, spender, tokens);
         return true;
     }
+	
     //return no of token allowed to spend by the spender from the owner
     function allowance(address tokenOwner, address spender) public view override returns(uint noOfTokens){
         return allowed[tokenOwner][spender];
     }
+	
     //there is a checking of approval before transfer from owner to spender
     function transferFrom(address from, address to, uint tokens) public override returns(bool success){
 
